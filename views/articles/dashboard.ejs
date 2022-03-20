@@ -1,0 +1,100 @@
+<%- include('header') -%>
+    <body>
+
+        <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+            <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">BLogzine</a>
+            <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+            <div class="navbar-nav">
+                <div class="nav-item text-nowrap">
+                    <a class="nav-link px-3" href="logout">Sign out</a>
+                </div>
+            </div>
+        </header>
+    
+        <div class="container-fluid">
+            <div class="row">
+                <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                    <div class="position-sticky pt-3">
+                        <ul class="nav flex-column">
+                            <br>
+                            <li class="nav-item">
+                                <a class="nav-link " aria-current="page" href="dashboard">
+                  <span data-feather="home"></span>
+                  Dashboard
+                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="home">
+                  <span data-feather="file"></span>
+                  Home
+                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                  <span data-feather="shopping-cart"></span>
+                  Category
+                </a>
+                            </li>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+    
+                <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <h1 class="h2">Dashboard</h1>
+                        <div class="btn-toolbar mb-2 mb-md-0">
+                            <a href="/new" class="btn btn-success">New Article</a>
+                            <!-- Nav Search -->
+                            <div class="nav-item dropdown dropdown-toggle-icon-none nav-search">
+                                <a class="nav-link dropdown-toggle" role="button" href="#" id="navSearch" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-search fs-4"> </i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end shadow rounded p-2" aria-labelledby="navSearch">
+                                <form class="input-group" method="POST" action="/" novalidate>
+                                    <input class="form-control border-success" type="search" placeholder="Search" name="search" aria-label="Search">
+                                    <button class="btn btn-success m-0" type="submit">Search</button>
+                                </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-sm">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">CreateAt</th>
+                                    <th scope="col">UpdatedAt</th>
+                                    <th scope="col">Published</th>
+                                    <th scope="col">Role</th>
+                                    <th scope="col"> </th>
+                                </tr>
+                            </thead>
+                            <% articles.forEach(articlesdata =>{%>
+                            <tbody>
+                                <tr>
+                                    <td><%= articlesdata.id%></td>
+                                    <td><%= articlesdata.title%></td>
+                                    <td><%= articlesdata.createAt.toLocaleDateString()%></td>
+                                    <td><%= articlesdata.updatedAt.toLocaleDateString()%></td>
+                                    <td><%= articlesdata.published%></td>
+                                    <td><%= articlesdata.role%></td>
+                                    <td>
+                                        <a href="/show/<%=articlesdata.id%>"><i class="bi bi-eye"></i></a>
+                                        <a href="/delete/<%=articlesdata.id%>"><i class="bi bi-trash text-danger"></i></a>
+                                    </td>
+                                    
+                                </tr>
+                                
+                            </tbody>
+                            <%})%>
+                        </table>
+                    </div>
+                </main>
+            </div>
+        </div>
+ <%- include('footer') -%>

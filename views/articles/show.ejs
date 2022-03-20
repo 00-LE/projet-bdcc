@@ -1,0 +1,63 @@
+<%- include('header') -%>
+<body>
+    <br>
+    <% articlesdata.forEach((articlesdata) => {%>
+    <div class="container">
+       <a href="/dashboard" class="btn btn-secondary">All Articles</a>
+       <a href="/edit/<%=articlesdata.id %>" class="btn btn-info">Edit</a>
+    </div>
+    <br>
+    <div class="container">
+        <h1 class="mb-1"><%=articlesdata.title %></h1>
+        <div class="text-muted mb-2"> <%= articlesdata.createAt.toLocaleDateString()%> </div>
+        <div class="card-text mt-4"> <%= articlesdata.content%> </div>
+    </div>
+    <% }) %>
+ <div class="container">
+     
+    <hr class="my-5">
+            
+    <div class="row">
+      <div class="col-12">
+      <h2>Leave a comment</h2>
+      <p>Please fill in the form below. Your email address will not be published.</p>
+    <!-- Comments Form -->
+<!-- Form START -->
+<form class="contact-form" id="contact-form" name="contactform" method="POST" action="/show/<%=articlesdata.id %>/comment" >
+    <!-- Main form -->
+    <div class="row">
+      <div class="col-md-6">
+        <!-- name -->
+        <div class="mb-3">
+          <input required="" id="con-name" name="name" type="text" class="form-control" placeholder="Name">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <!-- email -->
+        <div class="mb-3">
+          <input required="" id="con-email" name="email" type="email" class="form-control" placeholder="E-mail">
+        </div>
+      </div>
+      <div class="col-md-12">
+        <!-- Message -->
+        <div class="mb-3">
+          <textarea required="" id="con-message" name="message" cols="40" rows="6" class="form-control" placeholder="Message"></textarea>
+        </div>
+      </div>
+      <!-- submit button -->
+      <div class="col-md-12 text-start"><button class="btn btn-primary w-100" type="submit">Send Message</button></div>
+    </div>
+  </form>
+          <!-- Form END -->
+
+    <!-- Single Comment -->
+    <div class="media mb-4">
+        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+    <div class="media-body">
+        <h5 class="mt-0"><%=articlesdata.name %></h5>
+        <%= articlesdata.ContentComment%>
+        </div>
+    </div>
+</div>
+<%- include('footer') -%>
+

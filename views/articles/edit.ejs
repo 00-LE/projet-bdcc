@@ -1,0 +1,33 @@
+<%- include('header') -%>
+<body>
+  <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+      <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">BLogzine</a>
+      <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+  </button>
+      <div class="navbar-nav">
+          <div class="nav-item text-nowrap">
+              <a class="nav-link px-3" href="#">Sign out</a>
+          </div>
+      </div>
+</header>
+    <% articlesdata.forEach((articlesdata) => {%>
+        <div class="container">
+            <h1 class="mb-4">Edit Article</h1>
+            <form action="/edit/<%=articlesdata.id%>?_method=put" method="POST">
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input required type="text" name="title" id="title" class="form-control" value="<%=articlesdata.title%>">
+                  </div>
+                  <div class="form-group">
+                    <label for="content" >Content</label>
+                    <textarea name="content" id="content" class="form-control" required ><%=articlesdata.content%></textarea>
+                  </div>
+                <br>
+                <a href="/dashboard" class="btn btn-secondary">Cancel</a>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+        </div>
+        <% }) %>
+    
+<%- include('footer') -%>
